@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../services/api";
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -15,10 +16,16 @@ function Register() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        try {
+            const res = await api.post("/auth/register", formData);
+            alert(res.data.message);
+        } catch (error) {
+            alert(error.response?.data?.message || "Registration failed");
+        }
     };
+
 
     return (
         <div className="min-h-screen flex justify-center items-center bg-gray-50">

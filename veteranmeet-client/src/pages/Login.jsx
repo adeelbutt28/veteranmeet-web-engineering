@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api, { setAuthToken } from "../services/api";
 
 function Login() {
     const [credentials, setCredentials] = useState({
@@ -13,11 +14,17 @@ function Login() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(credentials);
+        try {
+            const res = await api.post("/auth/login", credentials);
+            localStorage.setItem("token", res.data.token);
+            setAuthToken(res.data.token);
+            alert("Login successful");
+        } catch (error) {
+            alert(error.response?.data?.message || "Login failed");
+        }
     };
-
     return (
         <div className="min-h-screen flex justify-center items-center bg-gray-50">
             <form
