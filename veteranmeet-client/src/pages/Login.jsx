@@ -1,11 +1,15 @@
 import { useState } from "react";
 import api, { setAuthToken } from "../services/api";
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
     });
+    const navigate = useNavigate();
+
 
     const handleChange = (e) => {
         setCredentials({
@@ -21,6 +25,8 @@ function Login() {
             localStorage.setItem("token", res.data.token);
             setAuthToken(res.data.token);
             alert("Login successful");
+            navigate("/dashboard");
+
         } catch (error) {
             alert(error.response?.data?.message || "Login failed");
         }
