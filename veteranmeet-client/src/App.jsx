@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
+import Events from "./pages/Events";
+
 
 
 function App() {
@@ -30,6 +32,14 @@ function App() {
           }
         />
 
+        <Route
+  path="/events"
+  element={
+    <ProtectedRoute>
+      <Events />
+    </ProtectedRoute>
+  }
+/>
 
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
