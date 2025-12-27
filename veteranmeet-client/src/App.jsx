@@ -40,6 +40,15 @@ function App() {
     </ProtectedRoute>
   }
 />
+<Route
+  path="/notifications"
+  element={
+    <ProtectedRoute>
+      <Notifications />
+    </ProtectedRoute>
+  }
+/>
+
 
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
