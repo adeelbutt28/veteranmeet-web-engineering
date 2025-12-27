@@ -48,6 +48,17 @@ function App() {
     </ProtectedRoute>
   }
 />
+import Admin from "./pages/Admin";
+
+<Route
+  path="/admin"
+  element={
+    <ProtectedRoute>
+      <Admin />
+    </ProtectedRoute>
+  }
+/>
+
 
 
         <Route path="/" element={<Landing />} />
